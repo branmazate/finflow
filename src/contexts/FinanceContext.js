@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState, useEffect} from 'react';
-import {db} from '../../../../db/database';
+import {db} from '../../db/database';
 
 const FinanceContext = createContext();
 
