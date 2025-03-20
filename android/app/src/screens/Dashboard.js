@@ -13,7 +13,10 @@ const Dashboard = () => {
                 categories[t.category] = (categories[t.category] || 0) + t.amount;
             }
         });
-        return Object.entries(categories).map(([label, value]));
+        return Object.keys(categories).map(category => ({
+            x: category,
+            y: categories[category],
+        }));
     };
     return  (
         <View style={styles.container}>
@@ -21,6 +24,8 @@ const Dashboard = () => {
             data = {processChartData()}
             colorScale = "qualitative"
             innerradius = {70}
+            labels = {({datum}) => `${datum.x}: ${datum.y.toFixed(2)}`}
+            labelRadius = {({innerRadius}) => innerRadius + 35}
             style ={{labels: {fontSize: 12}}}
             />
             <VictoryChart>
@@ -33,7 +38,7 @@ const Dashboard = () => {
     );
 };
 const styles = StylesSheet.create({
-    container: {flex: 1, padding: 15},
+    container: {flex: 1, padding: 15, backgroundColor: '#f5f5f5'},
 });
 
 export default Dashboard;
